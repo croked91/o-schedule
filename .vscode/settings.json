@@ -1,0 +1,14 @@
+{
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.removeUnusedImports": true,
+		"source.organizeImports": true
+	},
+	"editor.fontFamily": "JetBrains Mono",
+	"editor.fontSize": 13,
+	"editor.fontLigatures": true,
+	"editor.padding.top": 20,
+	"editor.lineHeight": 1.7,
+}
+
