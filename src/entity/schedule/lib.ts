@@ -1,14 +1,12 @@
 import dayjs from "dayjs";
 import isToday from "dayjs/plugin/isToday";
-import isYesterday from "dayjs/plugin/isYesterday";
 import isTomorrow from "dayjs/plugin/isTomorrow";
-
-import { ITVShow } from "../../shared/api/interface";
+import isYesterday from "dayjs/plugin/isYesterday";
+import { ITVShow } from "shared/api/interface";
 
 dayjs.extend(isToday);
 dayjs.extend(isYesterday);
 dayjs.extend(isTomorrow);
-
 
 export const getScheduleByType = (
   data: ITVShow[],
@@ -26,5 +24,21 @@ export const getScheduleByType = (
     }
     default:
       return [];
+  }
+};
+
+export const getLabel = (index: number) => {
+  switch (index) {
+    case 0: {
+      return "Вчера";
+    }
+    case 1: {
+      return "Сегодня";
+    }
+    case 2: {
+      return "Завтра";
+    }
+    default:
+      return "";
   }
 };

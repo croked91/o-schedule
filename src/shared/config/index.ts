@@ -13,3 +13,7 @@ export const API_URL = getEnvVar("REACT_APP_API_URL");
 export const NODE_ENV = getEnvVar("NODE_ENV");
 export const isDevEnv = NODE_ENV === "development";
 export const isProdEnv = NODE_ENV === "production";
+
+
+export const TIME_FORMAT = "HH:mm";
+export const DURATION_FORMAT = "H ч. mm м.";

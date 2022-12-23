@@ -1,15 +1,13 @@
-import { createEffect, createStore } from "effector";
+import { combine, createEffect, createStore } from "effector";
 import { createGate } from "effector-react";
 import { ITVShow } from "shared/api";
 import { getScheduleByType } from "./lib";
-import {mockSchedule} from 'shared/lib/mock'
 
 const url = "/schedule.json";
 
 export const fetchScheduleFx = createEffect(async (): Promise<ITVShow[]> => {
   const res = await fetch(url);
-  const shedule = await res.json();
-  return shedule;
+  return await res.json();
 });
 
 export const $yesterdaySchedule = createStore<ITVShow[]>([]).on(
@@ -27,18 +25,23 @@ export const $tomorrowSchedule = createStore<ITVShow[]>([]).on(
   (_, data) => getScheduleByType(data, "tomorrow")
 );
 
+export const stores = [$yesterdaySchedule, $todaySchedule, $tomorrowSchedule];
+
+export const $schedule = combine(
+  $yesterdaySchedule,
+  $todaySchedule,
+  $tomorrowSchedule,
+  (
+    $yesterdaySchedule: ITVShow[],
+    $todaySchedule: ITVShow[],
+    $tomorrowSchedule: ITVShow[]
+  ) => [...$yesterdaySchedule, ...$todaySchedule, ...$tomorrowSchedule]
+);
+
 export const ScheduleGate = createGate();
 ScheduleGate.open(fetchScheduleFx());
 
-export const stores = [
-  $todaySchedule,
-  $yesterdaySchedule,
-  $tomorrowSchedule,
-]
-
 //Мок сторы
-
-export const yest = getScheduleByType(mockSchedule, "yesterday")
-export const tood = getScheduleByType(mockSchedule, "today")
-export const toom = getScheduleByType(mockSchedule, "tomorrow")
-
+// export const yest = getScheduleByType(mockSchedule, "yesterday");
+// export const tood = getScheduleByType(mockSchedule, "today");
+// export const toom = getScheduleByType(mockSchedule, "tomorrow");

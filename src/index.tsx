@@ -1,7 +1,6 @@
-import { ConfigProvider } from "antd";
-import "antd/dist/reset.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Outlet } from "react-router-dom";
 import App from "./app";
 
 const root = ReactDOM.createRoot(
@@ -10,5 +9,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App />
+    <Outlet />
   </React.StrictMode>
 );

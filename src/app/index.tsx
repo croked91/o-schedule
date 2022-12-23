@@ -1,12 +1,9 @@
-import { Schedule } from "entity/schedule/ui";
-import s from "./styles.module.css";
+import "antd/dist/reset.css";
+import { Routing } from "pages";
+import { withProviders } from "./providers";
 
-function App() {
-  return (
-    <div className={s.app}>
-      <Schedule />
-    </div>
-  );
-}
+const App = () => {
+  return <Routing />;
+};
 
-export default App;
+export default withProviders(App);
