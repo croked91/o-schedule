@@ -2,6 +2,7 @@ import { createEffect, createStore } from "effector";
 import { createGate } from "effector-react";
 import { ITVShow } from "shared/api";
 import { getScheduleByType } from "./lib";
+import {mockSchedule} from 'shared/lib/mock'
 
 const url = "/schedule.json";
 
@@ -34,3 +35,10 @@ export const stores = [
   $yesterdaySchedule,
   $tomorrowSchedule,
 ]
+
+//Мок сторы
+
+export const yest = getScheduleByType(mockSchedule, "yesterday")
+export const tood = getScheduleByType(mockSchedule, "today")
+export const toom = getScheduleByType(mockSchedule, "tomorrow")
+
