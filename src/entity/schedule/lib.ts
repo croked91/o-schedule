@@ -1,12 +1,14 @@
 import dayjs from "dayjs";
 import isToday from "dayjs/plugin/isToday";
-import isTomorrow from "dayjs/plugin/isTomorrow";
 import isYesterday from "dayjs/plugin/isYesterday";
+import isTomorrow from "dayjs/plugin/isTomorrow";
+
 import { ITVShow } from "../../shared/api/interface";
 
 dayjs.extend(isToday);
 dayjs.extend(isYesterday);
 dayjs.extend(isTomorrow);
+
 
 export const getScheduleByType = (
   data: ITVShow[],
@@ -23,6 +25,6 @@ export const getScheduleByType = (
       return data.filter((e) => dayjs(+e.time * 1000).isTomorrow());
     }
     default:
-      return;
+      return [];
   }
 };

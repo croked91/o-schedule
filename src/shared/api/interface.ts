@@ -1,7 +1,7 @@
 export interface ITVShow {
   name: string;
   time: string;
-  length: 3600;
+  length: number | string;
   announce: {
     id: string;
     title: string;
